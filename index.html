@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&L Granite & Quartz</title>
+    <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #080808;
+            --secondary-color: #121212;
+            --accent-color: #dfb15b;
+            --light-bg: #1a1a1a;
+            --white: #ffffff;
+            --text-color: #d1d1d1;
+            --transition: all 0.4s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-color);
+            background-color: var(--primary-color);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, .logo, .hero-title, .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 1px;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(8, 8, 8, 0.95);
+            backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(223, 177, 91, 0.15);
+            transition: var(--transition);
+        }
+
+        .logo {
+            color: var(--accent-color);
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: var(--transition);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .lang-switch {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 14px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .lang-switch:hover {
+            background: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 1;
+        }
+
+        .hero-bg.active {
+            opacity: 1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 2;
+        }
+
+        .hero h1, .hero p, .hero a {
+            position: relative;
+            z-index: 3;
+        }
+
+        .hero h1 {
+            font-size: 58px;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.5s;
+        }
+
+        .hero p {
+            font-size: 16px;
+            font-weight: 300;
+            max-width: 650px;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.8s;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 14px 32px;
+            border: none;
+            font-weight: 600;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 1.1s;
+        }
+
+        .btn:hover {
+            background-color: var(--white);
+            transform: scale(1.05);
+        }
+
+        /* Sections General Styling */
+        section {
+            padding: 100px 50px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 50px;
+            color: var(--accent-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        /* Services & Interactive Book Catalog Section */
+        .services {
+            background-color: var(--secondary-color);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1300px;
+            margin: 0 auto 80px auto;
+        }
+
+        .service-card {
+            background: var(--light-bg);
+            border: 1px solid rgba(223, 177, 91, 0.1);
+            padding: 35px 25px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-color);
+            box-shadow: 0 15px 40px rgba(223, 177, 91, 0.15);
+        }
+
+        .service-card i {
+            font-size: 38px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+            color: var(--white);
+        }
+
+        .service-card p {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Interactive Book Container */
+        .catalog-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .catalog-container h3 {
+            color: var(--accent-color);
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .book {
+            width: 100%;
+            height: 450px;
+            position: relative;
+            perspective: 1500px;
+            margin: 0 auto;
+            background: #111;
+            border-radius: 10px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            border: 2px solid var(--accent-color);
+            display: flex;
+        }
+
+        .book-page {
+            width: 50%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: var(--light-bg);
+            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            box-sizing: border-box;
+        }
+
+        .book-page.left {
+            left: 0;
+            border-right: 1px solid rgba(223, 177, 91, 0.2);
+            border-radius: 8px 0 0 8px;
+        }
+
+        .book-page.right {
+            right: 0;
+            border-left: 1px solid rgba(223, 177, 91, 0.2);
+            border-radius: 0 8px 8px 0;
+            transform-origin: left;
+        }
+
+        .book-page img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(223, 177, 91, 0.3);
+        }
+
+        .book-page h4 {
+            color: var(--accent-color);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .book-page p {
+            font-size: 14px;
+            color: var(--text-color);
+            text-align: center;
+            line-height: 1.5;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .book-controls {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .book-btn {
+            background-color: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 10px 25px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .book-btn:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        /* Projects Section */
+        .projects-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 22px;
+            font-weight: 500;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 300px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(223, 177, 91, 0.15);
+        }
+
+        .project-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(8, 8, 8, 0.88);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .project-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .project-item:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-overlay h4 {
+            color: var(--accent-color);
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .project-overlay p {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 13px;
+        }
+
+        /* Modal Galería */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.92);
+            padding: 60px 20px;
+        }
+
+        .modal-content {
+            background-color: var(--secondary-color);
+            margin: auto;
+            padding: 30px;
+            border: 1px solid var(--accent-color);
+            width: 90%;
+            max-width: 1000px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .close-modal {
+            color: var(--accent-color);
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal-title {
+            color: var(--accent-color);
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .modal-gallery-grid img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid rgba(223, 177, 91, 0.2);
+            transition: var(--transition);
+        }
+
+        .modal-gallery-grid img:hover {
+            transform: scale(1.03);
+            border-color: var(--accent-color);
+        }
+
+        /* Contact Section Mejorada */
+        .contact {
+            background-color: var(--secondary-color);
+        }
+
+        .contact-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+            background: var(--light-bg);
+            border: 1px solid rgba(223, 177, 91, 0.15);
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .contact-info h3 {
+            color: var(--accent-color);
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+
+        .contact-info p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-item i {
+            color: var(--accent-color);
+            font-size: 20px;
+            margin-top: 4px;
+        }
+
+        .info-item h4 {
+            color: var(--white);
+            font-size: 16px;
+            margin-bottom: 3px;
+        }
+
+        .info-item span {
+            font-size: 14px;
+            color: var(--text-color);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .contact-form-container {
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--accent-color);
+            letter-spacing: 0.5px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #333;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 4px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .form-group textarea {
+            height: 130px;
+            resize: vertical;
+        }
+
+        /* Checkbox de Privacidad / Tratamiento de Datos */
+        .form-privacy {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-color);
+        }
+
+        .form-privacy input[type="checkbox"] {
+            margin-top: 3px;
+            accent-color: var(--accent-color);
+            cursor: pointer;
+        }
+
+        .privacy-link {
+            color: var(--accent-color);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .privacy-link:hover {
+            color: var(--white);
+        }
+
+        /* Floating Action Buttons (FAB) */
+        .fab-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .fab {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            font-size: 22px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: var(--transition);
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+        }
+
+        .fab-whatsapp { background-color: #25d366; }
+        .fab-sms { background-color: #007aff; }
+        .fab-instagram { background-color: #e4405f; }
+        .fab-facebook { background-color: #1877f2; }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 30px;
+            font-size: 13px;
+            border-top: 1px solid rgba(223, 177, 91, 0.15);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media(max-width: 900px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                padding: 30px;
+            }
+        }
+
+        @media(max-width: 768px) {
+            header { padding: 15px 20px; }
+            nav ul { display: none; }
+            .hero h1 { font-size: 38px; }
+            .book { height: 550px; }
+            .book-page { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="logo">
+            <a href="#home">
+                <img src="imagenes/logo sf.png" alt="R&L Granite & Quartz Logo" style="height: 45px; width: auto; vertical-align: middle;">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home" class="nav-home">Home</a></li>
+                <li><a href="#services" class="nav-services">Services</a></li>
+                <li><a href="#projects" class="nav-projects">Projects</a></li>
+                <li><a href="#contact" class="nav-contact">Contact</a></li>
+                <li><button class="lang-switch" onclick="toggleLanguage()">ES / EN</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section con carrusel automático -->
+    <section id="home" class="hero">
+        <div class="hero-bg active" style="background-image: url('imagenes/cocina 2.1.jpeg?auto=format&fit=crop&w=1920&q=80');"></div>
+        <div class="hero-bg" style="background-image: url('imagenes/cocina3.3.jpeg?auto=format&fit=crop&w=1920&q=80');"></div>
+        <div class="hero-bg" style="background-image: url('imagenes/baño 7.jpeg?auto=format&fit=crop&w=1920&q=80');"></div>
+        
+        <h1 class="hero-title">Elevate Your Spaces with Natural Elegance</h1>
+        <p class="hero-desc">Specialized in high-end Granite, Quartz, Marble, Countertops, and Custom Cabinets.</p>
+        <a href="#contact" class="hero-btn btn">Get a Quote</a>
+    </section>
+
+    <!-- Services Section with Interactive Book Catalog -->
+    <section id="services" class="services">
+        <h2 class="section-title services-title">Our Services & Stone Catalog</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-gem"></i>
+                <h3 class="srv-1-title">Granite Countertops</h3>
+                <p class="srv-1-desc">Durable, natural, and unique stone surfaces designed to withstand everyday use while maintaining an exquisite aesthetic.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-layer-group"></i>
+                <h3 class="srv-2-title">Quartz Surfaces</h3>
+                <p class="srv-2-desc">Engineered stone providing superior durability, non-porous finish, and modern designs for any architectural concept.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-mountain"></i>
+                <h3 class="srv-3-title">Marble Masterpieces</h3>
+                <p class="srv-3-desc">Timeless luxury and refined textures that bring unmatched sophistication to bathrooms, flooring, and accents.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-layer-group"></i>
+                <h3 class="srv-4-title">Custom Cabinets</h3>
+                <p class="srv-4-desc">Complete cabinet design and countertop integration built precisely to match your lifestyle and aesthetic preferences.</p>
+            </div>
+        </div>
+
+        <!-- Interactive Book Catalog Container -->
+        <div class="catalog-container">
+            <h3 class="catalog-heading">Interactive Stone Catalog</h3>
+            <div class="book" id="stoneBook">
+                <div class="book-page left" id="pageLeft">
+                    <img id="leftImg" src="imagenes/Catalogo granito.jpg?auto=format&fit=crop&w=600&q=80" alt="Stone">
+                    <h4 id="leftTitle">Exotic Granite</h4>
+                    <p id="leftDesc">Natural stone with unmatched durability and distinctive unique mineral patterns.</p>
+                </div>
+                <div class="book-page right" id="pageRight">
+                    <img id="rightImg" src="imagenes/catalogo quartz.jpg?auto=format&fit=crop&w=600&q=80" alt="Stone">
+                    <h4 id="rightTitle">Pure White Quartz</h4>
+                    <p id="rightDesc">Engineered non-porous quartz surface offering sleek modernity and low maintenance.</p>
+                </div>
+            </div>
+            <div class="book-controls">
+                <button class="book-btn" onclick="prevPage()"><i class="fas fa-arrow-left"></i> <span id="prevText">Prev</span></button>
+                <button class="book-btn" onclick="nextPage()"><span id="nextText">Next</span> <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title projects-title">Our Collections & Projects</h2>
+        <div class="projects-filter">
+            <button class="filter-btn active" onclick="filterProjects('all')" data-filter="all">All</button>
+            <button class="filter-btn" onclick="filterProjects('granite')" data-filter="granite">Granite</button>
+            <button class="filter-btn" onclick="filterProjects('quartz')" data-filter="quartz">Quartz</button>
+            <button class="filter-btn" onclick="filterProjects('marble')" data-filter="marble">Marble</button>
+            <button class="filter-btn" onclick="filterProjects('Cabinets')" data-filter="Cabinets">Cabinets</button>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Project 1: Granite -->
+            <div class="project-item" data-category="granite" onclick="openProjectModal('Granite Collection', ['imagenes/remodel 1.1 despues.jpeg?auto=format&fit=crop&w=600&q=80', 'imagenes/baño 7.jpeg?auto=format&fit=crop&w=600&q=80', 'imagenes/taller 1.jpeg?auto=format&fit=crop&w=600&q=80'])">
+                <img src="imagenes/cocina 3.3.jpeg?auto=format&fit=crop&w=600&q=80" alt="Granite Project">
+                <div class="project-overlay">
+                    <h4 class="p1-title">Exotic Granite Island</h4>
+                    <p class="p1-desc">Click to view full project gallery</p>
+                </div>
+            </div>
+            <!-- Project 2: Quartz -->
+            <div class="project-item" data-category="quartz" onclick="openProjectModal('Quartz Collection', ['imagenes/quarzo 1.jpeg?auto=format&fit=crop&w=600&q=80', 'imagenes/quarzo 2.jpeg?auto=format&fit=crop&w=600&q=80', 'imagenes/baño 3.jpeg?auto=format&fit=crop&w=600&q=80'])">
+                <img src="imagenes/quarzo 1.jpeg?auto=format&fit=crop&w=600&q=80" alt="Quartz Project">
+                <div class="project-overlay">
+                    <h4 class="p2-title">Modern White Quartz</h4> 
+                    <p class="p2-desc">Click to view full project gallery</p>
+                </div>
+            </div>
+            <!-- Project 3: Marble -->
+            <div class="project-item" data-category="marble" onclick="openProjectModal('Marble Masterpieces', ['imagenes/marmol 4.jpeg?auto=format&fit=crop&w=600&q=80', 'imagenes/marmol 5.jpeg?auto=format&fit=crop&w=600&q=80', 'imagenes/marmol 3.jpeg?auto=format&fit=crop&w=600&q=80'])">
+                <img src="imagenes/marmol 1.jpeg?auto=format&fit=crop&w=600&q=80" alt="Marble Project">
+                <div class="project-overlay">
+                    <h4 class="p3-title">Carrara Marble Vanity</h4>
+                    <p class="p3-desc">Click to view full project gallery</p>
+                </div>
+            </div>
+            <!-- Project 4: Cabinets -->
+            <div class="project-item" data-category="Cabinets" onclick="openProjectModal('Custom Cabinets', ['imagenes/gabinetes 2.jpeg?auto=format&fit=crop&w=600&q=80', 'imagenes/gabinetes 4.jpeg?auto=format&fit=crop&w=600&q=80', 'imagenes/gabinetes 3.jpeg?auto=format&fit=crop&w=600&q=80'])">
+                <img src="imagenes/Gabinetes 1.jpeg?auto=format&fit=crop&w=600&q=80" alt="Cabinet Project">
+                <div class="project-overlay">
+                    <h4 class="p4-title">Luxury Custom Cabinets</h4>
+                    <p class="p4-desc">Click to view full project gallery</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Gallery Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeProjectModal()">&times;</span>
+            <h3 id="modalTitle" class="modal-title">Project Gallery</h3>
+            <div id="modalGalleryGrid" class="modal-gallery-grid">
+                <!-- Dinámico -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title contact-title">Contact Us & Get a Quote</h2>
+        <div class="contact-wrapper">
+            <!-- Información de Contacto Directa -->
+            <div class="contact-info">
+                <div>
+                    <h3 class="info-heading">Let's Talk About Your Project</h3>
+                    <p class="info-desc">Reach out to our specialists for expert guidance, stone selection, or a free customized quote for your architectural space.</p>
+                </div>
+                <div>
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4 class="lbl-call">Direct Line</h4>
+                            <span>6142547333-6145357828</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email Support</h4>
+                            <span>rlgranitetile24@outlook.com</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4 class="lbl-office">Showroom Location</h4>
+                            <span>3090 Fisher Rd, Columbus, OH 43228</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulario de Cotización -->
+            <div class="contact-form-container">
+                <form id="quoteForm" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="name" class="lbl-name">Full Name</label>
+                        <input type="text" id="name" required placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="lbl-phone">Phone Number</label>
+                        <input type="tel" id="phone" required placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="lbl-msg">Project Details / Message</label>
+                        <textarea id="message" required placeholder="Describe your project (Granite, Quartz, Marble, Countertops, Cabinets.)"></textarea>
+                    </div>
+                    <!-- Política de Tratamiento de Datos -->
+                    <div class="form-privacy">
+                        <input type="checkbox" id="privacy" required>
+                        <label for="privacy" style="display:inline; color: var(--text-color); font-weight: 350;">
+                            <span class="lbl-privacy-text">I authorize the treatment of my personal data according to the</span> 
+                            <span class="privacy-link" onclick="openPrivacyModal()"><span class="lbl-privacy-policy">Data Privacy Policy</span></span>.
+                        </label>
+                    </div>
+                    <button type="submit" class="btn lbl-submit" style="width: 100%;">Send Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Política de Tratamiento de Datos -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closePrivacyModal()">&times;</span>
+            <h3 id="privacyModalTitle" class="modal-title">Data Privacy Policy</h3>
+            <div style="font-size: 14px; line-height: 1.6; color: var(--text-color); max-height: 350px; overflow-y: auto; padding-right: 10px;">
+                <p id="privacyP1" style="margin-bottom: 15px;">At R&L Granite & Quartz, we are committed to protecting the privacy and security of your personal data. The information collected through our contact and quote forms (such as your name, phone number, and project details) is used exclusively to process your requests, communicate regarding your architectural projects, and provide customer support.</p>
+                <p id="privacyP2" style="margin-bottom: 15px;">We do not sell, rent, or share your personal information with third parties for commercial purposes. Your data is stored securely and handled in accordance with applicable data protection standards.</p>
+                <p id="privacyP3">By submitting your details, you consent to the collection and use of this information as outlined in this policy. You may request access, modification, or deletion of your data at any time by contacting us directly.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <a href="https://wa.me/6142547333" target="_blank" class="fab fab-whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="sms:6142547333" class="fab fab-sms" title="Text Message / SMS"><i class="fas fa-sms"></i></a>
+        <a href="https://www.instagram.com/rlgranitequartz/" target="_blank" class="fab fab-instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=100067120127316" target="_blank" class="fab fab-facebook" title="Facebook"><i class="fab fa-facebook"></i></a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-text">&copy; 2026 R&L Granite & Quartz. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        const translations = {
+            en: {
+                navHome: "Home",
+                navServices: "Services",
+                navProjects: "Projects",
+                navContact: "Contact",
+                heroTitle: "Elevate Your Spaces with Natural Elegance",
+                heroDesc: "Specialized in high-end Granite, Quartz, Marble, Countertops, and Custom Kitchens.",
+                heroBtn: "Get a Quote",
+                servicesTitle: "Our Services & Stone Catalog",
+                catalogHeading: "Interactive Stone Catalog",
+                prevText: "Prev",
+                nextText: "Next",
+                srv1Title: "Granite Countertops",
+                srv1Desc: "Durable, natural, and unique stone surfaces designed to withstand everyday use while maintaining an exquisite aesthetic.",
+                srv2Title: "Quartz Surfaces",
+                srv2Desc: "Engineered stone providing superior durability, non-porous finish, and modern designs for any architectural concept.",
+                srv3Title: "Marble Masterpieces",
+                srv3Desc: "Timeless luxury and refined textures that bring unmatched sophistication to bathrooms, flooring, and accents.",
+                srv4Title: "Custom Cabinets",
+                srv4Desc: "Complete cabinet design and countertop integration built precisely to match your lifestyle and aesthetic preferences.",
+                projectsTitle: "Our Collections & Projects",
+                contactTitle: "Contact Us & Get a Quote",
+                infoHeading: "Let's Talk About Your Project",
+                infoDesc: "Reach out to our specialists for expert guidance, stone selection, or a free customized quote for your architectural space.",
+                lblCall: "Direct Line",
+                lblOffice: "Showroom Location",
+                lblName: "Full Name",
+                lblPhone: "Phone Number",
+                lblMsg: "Project Details / Message",
+                lblPrivacyText: "I authorize the treatment of my personal data according to the",
+                lblPrivacyPolicy: "Data Privacy Policy",
+                lblSubmit: "Send Request",
+                privacyModalTitle: "Data Privacy Policy",
+                footerText: "&copy; 2026 R&L Granite & Quartz. All rights reserved."
+            },
+            es: {
+                navHome: "Inicio",
+                navServices: "Servicios",
+                navProjects: "Proyectos",
+                navContact: "Contacto",
+                heroTitle: "Eleva Tus Espacios con Elegancia Natural",
+                heroDesc: "Especializados en Granito, Cuarzo, Mármol, Encimeras y Gabinetes a medida.",
+                heroBtn: "Cotizar Proyecto",
+                servicesTitle: "Nuestros Servicios y Catálogo de Piedras",
+                catalogHeading: "Catálogo Interactivo de Piedras",
+                prevText: "Anterior",
+                nextText: "Siguiente",
+                srv1Title: "Encimeras de Granito",
+                srv1Desc: "Superficies de piedra duraderas, naturales y únicas diseñadas para resistir el uso diario manteniendo una estética exquisita.",
+                srv2Title: "Superficies de Cuarzo",
+                srv2Desc: "Piedra reconstituida que ofrece durabilidad superior, acabado no poroso y diseños modernos para cualquier concepto.",
+                srv3Title: "Obras Maestras en Mármol",
+                srv3Desc: "Lujo atemporal y texturas refinadas que aportan una sofisticación inigualable a baños, pisos y detalles.",
+                srv4Title: "Gabinetes a medida",
+                srv4Desc: "Diseño integral de gabinetes e integración de encimeras construidas exactamente a la medida de tu estilo de vida.",
+                projectsTitle: "Nuestras Colecciones y Proyectos",
+                contactTitle: "Contáctanos y Solicita una Cotización",
+                infoHeading: "Hablemos de Tu Proyecto",
+                infoDesc: "Comunícate con nuestros especialistas para recibir asesoría experta, selección de piedras o una cotización personalizada gratis.",
+                lblCall: "Línea Directa",
+                lblOffice: "Ubicación del Showroom",
+                lblName: "Nombre Completo",
+                lblPhone: "Número de Teléfono",
+                lblMsg: "Detalles del Proyecto / Mensaje",
+                lblPrivacyText: "Autorizo el tratamiento de mis datos personales según la",
+                lblPrivacyPolicy: "Política de Privacidad de Datos",
+                lblSubmit: "Enviar Solicitud",
+                privacyModalTitle: "Política de Tratamiento de Datos",
+                footerText: "&copy; 2026 R&L Granite & Quartz. Todos los derechos reservados."
+            }
+        };
+
+        // Book Catalog Data (Multilingual)
+        const catalogPages = {
+            en: [
+                {
+                    left: { img: "imagenes/Catalogo granito.jpg?auto=format&fit=crop&w=600&q=80", title: "Exotic Granite", desc: "Natural stone with unmatched durability and distinctive unique mineral patterns." },
+                    right: { img: "imagenes/catalogo quartz.jpg?auto=format&fit=crop&w=600&q=80", title: "Pure White Quartz", desc: "Engineered non-porous quartz surface offering sleek modernity and low maintenance." }
+                },
+                {
+                    left: { img: "imagenes/catalogo marmol.jpg?auto=format&fit=crop&w=600&q=80", title: "Carrara Marble", desc: "Timeless classic luxury with refined textures bringing unmatched sophistication." },
+                    right: { img: "imagenes/cocina 3.4.jpeg?auto=format&fit=crop&w=600&q=80", title: "Custom Countertops", desc: "Precision cut stonework tailored perfectly for kitchens and bathroom vanities." }
+                }
+            ],
+            es: [
+                {
+                    left: { img: "imagenes/Catalogo granito.jpg?auto=format&fit=crop&w=600&q=80", title: "Granito Exótico", desc: "Piedra natural de durabilidad inigualable y patrones minerales únicos y distintivos." },
+                    right: { img: "imagenes/catalogo quartz.jpg?auto=format&fit=crop&w=600&q=80", title: "Cuarzo Blanco Puro", desc: "Superficie de cuarzo no porosa que ofrece modernidad elegante y bajo mantenimiento." }
+                },
+                {
+                    left: { img: "imagenes/catalogo marmol.jpg?auto=format&fit=crop&w=600&q=80", title: "Mármol Carrara", desc: "Lujo clásico atemporal con texturas refinadas que aportan una sofisticación inigualable." },
+                    right: { img: "imagenes/cocina3.4.jpeg?auto=format&fit=crop&w=600&q=80", title: "Encimeras Personalizadas", desc: "Trabajos en piedra cortados con precisión adaptados perfectamente para cocinas y baños." }
+                }
+            ]
+        };
+
+        let currentBookPage = 0;
+        let currentLang = 'en';
+
+        function updateBookContent() {
+            const pages = catalogPages[currentLang];
+            const currentPair = pages[currentBookPage];
+
+            document.getElementById('leftImg').src = currentPair.left.img;
+            document.getElementById('leftTitle').innerText = currentPair.left.title;
+            document.getElementById('leftDesc').innerText = currentPair.left.desc;
+
+            document.getElementById('rightImg').src = currentPair.right.img;
+            document.getElementById('rightTitle').innerText = currentPair.right.title;
+            document.getElementById('rightDesc').innerText = currentPair.right.desc;
+        }
+
+        function nextPage() {
+            const pages = catalogPages[currentLang];
+            if (currentBookPage < pages.length - 1) {
+                const rightPage = document.getElementById('pageRight');
+                rightPage.style.transform = 'rotateY(-180deg)';
+                setTimeout(() => {
+                    currentBookPage++;
+                    updateBookContent();
+                    rightPage.style.transform = 'rotateY(0deg)';
+                }, 400);
+            }
+        }
+
+        function prevPage() {
+            if (currentBookPage > 0) {
+                const rightPage = document.getElementById('pageRight');
+                rightPage.style.transform = 'rotateY(-180deg)';
+                setTimeout(() => {
+                    currentBookPage--;
+                    updateBookContent();
+                    rightPage.style.transform = 'rotateY(0deg)';
+                }, 400);
+            }
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            const t = translations[currentLang];
+
+            document.querySelector('.nav-home').innerText = t.navHome;
+            document.querySelector('.nav-services').innerText = t.navServices;
+            document.querySelector('.nav-projects').innerText = t.navProjects;
+            document.querySelector('.nav-contact').innerText = t.navContact;
+            document.querySelector('.hero-title').innerText = t.heroTitle;
+            document.querySelector('.hero-desc').innerText = t.heroDesc;
+            document.querySelector('.hero-btn').innerText = t.heroBtn;
+            document.querySelector('.services-title').innerText = t.servicesTitle;
+            document.querySelector('.catalog-heading').innerText = t.catalogHeading;
+            document.getElementById('prevText').innerText = t.prevText;
+            document.getElementById('nextText').innerText = t.nextText;
+            
+            document.querySelector('.srv-1-title').innerText = t.srv1Title;
+            document.querySelector('.srv-1-desc').innerText = t.srv1Desc;
+            document.querySelector('.srv-2-title').innerText = t.srv2Title;
+            document.querySelector('.srv-2-desc').innerText = t.srv2Desc;
+            document.querySelector('.srv-3-title').innerText = t.srv3Title;
+            document.querySelector('.srv-3-desc').innerText = t.srv3Desc;
+            document.querySelector('.srv-4-title').innerText = t.srv4Title;
+            document.querySelector('.srv-4-desc').innerText = t.srv4Desc;
+
+            document.querySelector('.projects-title').innerText = t.projectsTitle;
+            document.querySelector('.contact-title').innerText = t.contactTitle;
+            
+            document.querySelector('.info-heading').innerText = t.infoHeading;
+            document.querySelector('.info-desc').innerText = t.infoDesc;
+            document.querySelector('.lbl-call').innerText = t.lblCall;
+            document.querySelector('.lbl-office').innerText = t.lblOffice;
+
+            document.querySelector("label[for='name']").innerText = t.lblName;
+            document.querySelector("label[for='phone']").innerText = t.lblPhone;
+            document.querySelector("label[for='message']").innerText = t.lblMsg;
+            document.querySelector('.lbl-privacy-text').innerText = t.lblPrivacyText;
+            document.querySelector('.lbl-privacy-policy').innerText = t.lblPrivacyPolicy;
+            document.querySelector('.lbl-submit').innerText = t.lblSubmit;
+            document.getElementById('privacyModalTitle').innerText = t.privacyModalTitle;
+            document.querySelector('.footer-text').innerHTML = t.footerText;
+
+            updateBookContent();
+        }
+
+        function filterProjects(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const items = document.querySelectorAll('.project-item');
+            items.forEach(item => {
+                item.style.transform = 'scale(0)';
+                item.style.opacity = '0';
+                setTimeout(() => {
+                    if (category === 'all' || item.getAttribute('data-category') === category) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.transform = 'scale(1)';
+                            item.style.opacity = '1';
+                        }, 50);
+                    } else {
+                        item.style.display = 'none';
+                    }
+                }, 300);
+            });
+        }
+
+        function openProjectModal(title, images) {
+            const modal = document.getElementById('projectModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalGalleryGrid = document.getElementById('modalGalleryGrid');
+
+            modalTitle.innerText = title;
+            modalGalleryGrid.innerHTML = '';
+
+            images.forEach(imgUrl => {
+                const img = document.createElement('img');
+                img.src = imgUrl;
+                modalGalleryGrid.appendChild(img);
+            });
+
+            modal.style.display = 'block';
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').style.display = 'none';
+        }
+
+        // Funciones para el Modal de Política de Privacidad
+        function openPrivacyModal() {
+            document.getElementById('privacyModal').style.display = 'block';
+        }
+
+        function closePrivacyModal() {
+            document.getElementById('privacyModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const projectModal = document.getElementById('projectModal');
+            const privacyModal = document.getElementById('privacyModal');
+            if (event.target == projectModal) {
+                projectModal.style.display = 'none';
+            }
+            if (event.target == privacyModal) {
+                privacyModal.style.display = 'none';
+            }
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+
+            const smsText = `New Quote Request:\nName: ${name}\nPhone: ${phone}\nMessage: ${message}`;
+            
+            alert(currentLang === 'en' 
+                ? `Thank you ${name}! Your request has been processed. An SMS notification has been structured for R&L management:\n\n"${smsText}"`
+                : `¡Gracias ${name}! Tu solicitud ha sido procesada. Se ha generado un mensaje de texto (SMS) con la información para R&L:\n\n"${smsText}"`
+            );
+
+            document.getElementById('quoteForm').reset();
+        }
+
+        // Función para cambiar la imagen de fondo del hero cada 3 segundos
+        let currentBgIndex = 0;
+        const bgSlides = document.querySelectorAll('.hero-bg');
+
+        function changeHeroBackground() {
+            bgSlides[currentBgIndex].classList.remove('active');
+            currentBgIndex = (currentBgIndex + 1) % bgSlides.length;
+            bgSlides[currentBgIndex].classList.add('active');
+        }
+
+        setInterval(changeHeroBackground, 3000);
+    </script>
+</body>
+</html>
